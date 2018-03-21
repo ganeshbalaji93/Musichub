@@ -1,0 +1,40 @@
+{% extends "myapp/base.html" %}
+
+{% block title %} Topviews {% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h2>Top Viewed Songs</h2>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered datatable">
+        <thead>
+        <tr class="bg-success">
+                <th><h4>Sl No</h4></th>
+               <th><h4>Song Name</h4></th>
+               <th><h4>Artist Name</h4></th>
+                <th><h4>Views</h4></th>
+                <th><h4>Ratings</h4></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for topviews in value %}
+        <tr>
+
+
+                <td><span>{{ forloop.counter }}</span></td>
+                <td><span>{{ topviews.song_id__song_name }}</span></td>
+                <td><span>{{ topviews.song_id__artist_name }}</span></td>
+                <td><span>{{ topviews.song_id__view_count }}</span></td>
+                <td><span>{{ topviews.average_rating }}</span></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+{% endblock %}
+
+
+
+

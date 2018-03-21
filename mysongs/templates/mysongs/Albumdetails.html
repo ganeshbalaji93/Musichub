@@ -1,0 +1,47 @@
+{% extends "myapp/base.html" %}
+{% load mysongs_extras %}
+
+{% load staticfiles %}
+
+{% block title %} CreateAlbum {% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h2>Album List</h2>
+    <div class="table-responsive" id="myTable">
+    <table class="table table-striped table-hover table-bordered datatable">
+    <thead>
+    <tr class="bg-success">
+
+                <th><h4>Sl No</h4></th>
+                <th><h4>Album Name</h4></th>
+                <th><h4>Released Year</h4></th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+        {% for album in album_list %}
+        <tr>
+                <td><span>{{ forloop.counter }}</span></td>
+                <td><a href="songsview/{{ album.album_id }}">{{ album.album_name }}</a></td>
+                <td><span>{{ album.album_year}}</span></td>
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    </table>
+
+
+
+    </div>
+    </div>
+{% endblock  %}
+
+
+
+
+
+

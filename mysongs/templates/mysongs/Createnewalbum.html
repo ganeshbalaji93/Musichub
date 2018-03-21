@@ -1,0 +1,59 @@
+{% extends "myapp/base.html" %}
+
+{% block title %} CreateNewalbum {% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <form class="form-horizontal" method="POST">
+    {% csrf_token %}
+      <h1>Creating Album</h1>
+      {% if existingerror %}
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4 alert alert-danger">
+        <strong>Alert! </strong>Entered Album name already exists.please try different name
+        </div>
+        </div>
+        {%endif %}
+
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="albumname">AlbumName:</label>
+      <div class="col-sm-4">
+        <input type="albumname" class="typeahead form-control" id="albumname" placeholder="Enter AlbumName" name="albumname" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="albumyear">AlbumYear:</label>
+        <div class="col-sm-4">
+        <input type="albumyear" class="date-own form-control" readonly="readonly" id="albumyear" placeholder="Enter AlbumYear" name="albumyear" required>
+        </div>
+      </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">submit</button>
+      </div>
+    </div>
+
+
+  </form>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

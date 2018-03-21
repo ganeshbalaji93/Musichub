@@ -1,0 +1,108 @@
+{% extends "myapp/base.html" %}
+{% load mysongs_extras %}
+
+{% block title %} CreateSong {% endblock %}
+
+{% block content %}
+
+        <div class="container">
+            <form class="form-horizontal" method="POST">
+                    {% csrf_token %}
+                <h1>Create Songs</h1>
+
+                <div class="form-group">
+                <label class="control-label col-sm-2" for="albumname<"><b>AlbumName</b></label>
+                <div class="col-sm-4">
+                <select class="form-control" id="currentalbum" name="currentalbum">
+                <option selected="selected" >Select Album name:</option>
+
+                  {% for albumnames in Albumrecord_list %}
+                    <option value="{{ albumnames.album_id }}">{{ albumnames|duplicate:duplicate_album_list }}</option>
+                  {% endfor %}
+
+                </select>
+                    </div>
+                    <button type="button" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#myModal">Add Album</button>
+
+                </div>
+
+                <div class="form-group">
+                <label class="control-label col-sm-2" for="songname"><b>SongName</b></label>
+                    <div class="col-sm-4">
+                    <input type="songname" class="form-control"  placeholder="Enter SongName" name="songname" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label class="control-label col-sm-2" for="artistname"><b>ArtistName</b></label>
+                 <div class="col-sm-4">
+                <input type="artistname" class="form-control"  placeholder="Enter ArtistName" name="artistname" required>
+                 </div>
+                </div>
+
+                <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-success" type="submit" name="form_action" value="createsong">submit</button>
+                </div>
+                </div>
+                </form>
+                </div>
+        </div>
+                <div class="container">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                      <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h4 class="modal-title">Create Album</h4>
+                                            </div>
+
+                                            {% if existingerror %}
+                                            <div class="modal-body">
+                                              <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-4 alert alert-danger">
+                                                <strong>Alert! </strong>Entered Album name already exists.please try different name
+                                                </div>
+                                                </div>
+                                                    </div>
+
+                                                {%endif %}
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <br> </br>
+                                                    <label for="albumname" class="control-label col-sm-2"><b>AlbumName</b></label>
+                                                    <div class="col-sm-4">
+                                                    <input type="text" class="form-control" placeholder="Enter AlbumName" name="albumname" required>
+                                                    </div>
+                                                    <br> </br>
+                                                </div>
+
+                                                <div class="form-group">
+                                                <label class="control-label col-sm-2" for="albumyear">AlbumYear:</label>
+                                                <div class="col-sm-4">
+                                                <input type="albumyear" class="date-own form-control" readonly="readonly" id="albumyear" placeholder="Enter AlbumYear" name="albumyear" required>
+                                                <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                                </div>
+
+                                                    <button class="btn btn-success"  type="submit" name="form_action" value="createalbum">submit</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </form>
+
+                            </div>
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+{% extends "myapp/base.html" %}
+
+{% block title %} Songs {% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Album name: {{album_instance.album_name}}({{album_instance.album_year}})</h1>
+    <h3><caption>Songs List</caption></h3>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+        <h1>{{Songstable}}</h1>
+
+        <tr>
+                <th><span>Sl No</span></th>
+                <th><span>Song Name</span></th>
+                <th><span>Artist Name</span></th>
+        </tr>
+
+        <tr>
+            {% for songs in songs_list %}
+
+                <th><span>{{ forloop.counter }}</span></th>
+                <th><span><a href="songdetails/{{ songs.song_id }}">{{ songs.song_name}}</a></span></th>
+                <th><span>{{ songs.artist_name }}</span></th>
+
+        </tr>
+{% endfor %}
+</table>
+        </div>
+    </div>
+{% endblock %}
+
+
